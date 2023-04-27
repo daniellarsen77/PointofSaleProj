@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "messaround2", "messaround2\messaround2.csproj", "{4E2947BE-20E6-4EA0-BC93-CEA8D712796F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E2947BE-20E6-4EA0-BC93-CEA8D712796F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E2947BE-20E6-4EA0-BC93-CEA8D712796F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E2947BE-20E6-4EA0-BC93-CEA8D712796F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E2947BE-20E6-4EA0-BC93-CEA8D712796F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4E82FAFC-A5AB-448F-A181-D2F52FD97F2C}
+	EndGlobalSection
+EndGlobal

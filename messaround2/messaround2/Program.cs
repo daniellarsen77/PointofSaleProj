@@ -1,18 +1,66 @@
-﻿namespace PointofSaleProj
+﻿namespace messaround2
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-<<<<<<< Updated upstream
-            Console.WriteLine("Hello, World!");
-            Console.WriteLine("Daniel was here");
-=======
-            Terminal terminal = new Terminal();
-            terminal.PrintMenu();
+            // Create a list of products
+            List<Product> products = new List<Product>()
+            {
+                new Product("Apple", "Fruit", "A juicy red apple", 0.99),
+                new Product("Orange", "Fruit", "A sweet orange", 1.29),
+                new Product("Banana", "Fruit", "A ripe banana", 0.79),
+                new Product("Lemon", "Fruit", "A sour lemon", 0.49),
+                new Product("Mango", "Fruit", "A tropical mango", 1.99),
+                new Product("Grapes", "Fruit", "A bunch of grapes", 2.49),
+                new Product("Bread", "Bakery", "A loaf of bread", 2.99),
+                new Product("Bagel", "Bakery", "A fresh bagel", 1.49),
+                new Product("Croissant", "Bakery", "A buttery croissant", 1.99),
+                new Product("Muffin", "Bakery", "A blueberry muffin", 1.79),
+                new Product("Donut", "Bakery", "A glazed donut", 0.99),
+                new Product("Cake", "Bakery", "A slice of cake", 3.99)
+            };
 
-          //Build Reciept here
+            List<Order> orders = new List<Order>();
 
+            bool exit = false;
+            while (!exit)
+            {
+                // Display menu
+                Console.WriteLine("Welcome to the Product Ordering System!");
+                Console.WriteLine("-------------------------------------");
+                Console.WriteLine("Available Products:");
+                for (int i = 0; i < products.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {products[i].Name} ({products[i].Category}): {products[i].Description} - ${products[i].Price}");
+                }
+                Console.WriteLine("-------------------------------------");
+                Console.WriteLine("What would you like to order? (Enter a number from 1 to 12)");
+                int productIndex = Convert.ToInt32(Console.ReadLine()) - 1;
+
+                // Ask for quantity
+                Console.WriteLine("How many would you like to order?");
+                int quantity = Convert.ToInt32(Console.ReadLine());
+
+                // Calculate line total
+                double lineTotal = products[productIndex].Price * quantity;
+
+                // Add order to list
+                Order order = new Order(products[productIndex], quantity, lineTotal);
+                orders.Add(order);
+
+                // Ask if user wants to order more or complete purchase
+                Console.WriteLine("Would you like to order more or complete purchase? (Enter '1' to order more or '2' to complete purchase)");
+                int choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        continue;
+                    case 2:
+                        exit = true;
+                        break;
+                }
+            }
 
             // Calculate totals
             double subtotal = 0;
@@ -81,7 +129,7 @@
                     Console.WriteLine("Thank you for your purchase!");
                     break;
 
-                case 3: // Check
+                    case 3: // Check
                     Console.WriteLine("What is the check number?");
                     string checkNumber = Console.ReadLine();
 
@@ -106,7 +154,6 @@
                     Console.WriteLine("Invalid payment type entered.");
                     break;
             }
->>>>>>> Stashed changes
         }
     }
 }

@@ -37,7 +37,56 @@ namespace PointofSaleProj
                     "$" + p.Price);
             }
         }
-       
+        public void BuildRecipt()
+        {
+
+            bool goOn = true;
+            while (goOn)
+            {
+                Console.WriteLine("Please select an item number to purchase:");
+                int index = Convert.ToInt32(Console.ReadLine()); //needs to validate for integers
+                Reciept.Add(Menu[index-1]);
+                Console.WriteLine("Continue shopping? y/n");
+                string input = Console.ReadLine();
+                if (input == "y")
+                {
+                    goOn = true;
+                }
+                else if (input == "n")
+                {                   
+                    PrintReciept();
+                    goOn = false;
+                }
+                else
+                {
+                    Console.WriteLine("I didn't understand that, would you like to continue shopping? y/n");
+                    continue;
+                }
+            }
+            
+        }
+        public void PrintReciept()
+        {
+            Console.WriteLine("Receipt:");
+            Console.WriteLine("=================");
+            for (int i = 0; i < Reciept.Count; i++)
+            {
+                Product p = Reciept[i];
+                Console.WriteLine(p.Name + " - " +
+                    "$" + p.Price);
+            }
+            Console.WriteLine("=================");
+        }
+        public double GetTotal()
+        {
+            double total = 0;
+            for (int i = 0; i < Reciept.Count; i++)
+            {
+                Product p = Reciept[i];
+                total += p.Price;
+            }
+            return total;
+        }
 
     }
 

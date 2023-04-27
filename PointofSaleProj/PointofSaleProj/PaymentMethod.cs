@@ -56,7 +56,7 @@ namespace PointofSaleProj
             Console.WriteLine("Enter expiration year:");
             int year = Convert.ToInt32(Console.ReadLine());
             expirationDate = new DateTime(year, month, 1);
-            if(expirationDate > DateTime.Now)
+            if(expirationDate < DateTime.Now)
             {
                 Console.WriteLine("Payment method failed. This card is expired.");
                 PayCreditCard();
@@ -74,11 +74,15 @@ namespace PointofSaleProj
         {
             Console.WriteLine("Please enter check number:");
             string checkNum = Console.ReadLine();
-            if(checkNum.Length != 9)
+            if (checkNum.Length != 9)
             {
                 Console.WriteLine("Invalid check...or something, I don't fully understand how checks work");
                 Console.WriteLine("Try again!");
-                PayCheck(); 
+                PayCheck();
+            }
+            else
+            {
+                Console.WriteLine("Thank you for shopping at Virtual BREWdio!");
             }
         }
 

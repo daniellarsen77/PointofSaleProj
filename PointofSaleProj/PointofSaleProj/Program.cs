@@ -6,6 +6,9 @@
         {
             Console.WriteLine("Hello, World!");
             Console.WriteLine("Daniel was here");
+            Console.WriteLine();
+            Terminal terminal = new Terminal();
+            terminal.PrintMenu();
         }
     }
 }

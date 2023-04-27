@@ -6,7 +6,22 @@ using System.Threading.Tasks;
 
 namespace PointofSaleProj
 {
-    internal class Order
+    class Order
     {
+        public Product Product { get; set; }
+        public int Quantity { get; set; }
+        public double LineTotal { get; set; }
+
+        public Order(Product product, int quantity, double lineTotal)
+        {
+            Product = product;
+            Quantity = quantity;
+            LineTotal = lineTotal;
+        }
+
+        public override string ToString()
+        {
+            return $"{Product.Name} ({Product.Category}): {Product.Description} - {Quantity} x ${Product.Price} = ${LineTotal}";
+        }
     }
 }

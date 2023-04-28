@@ -11,7 +11,7 @@ namespace PointofSaleProj
     {
         public List<Product> Menu { get; set; } = new List<Product>();
 
-        public List<Product> Reciept { get; set; } = new List<Product>();
+        public Dictionary<Product, int> Reciept { get; set; } = new Dictionary<Product, int>();
         public Terminal()
         {
             Menu.Add(new Product("Coffee", "Drinks", "Just plain coffee", 1.99));
@@ -45,7 +45,9 @@ namespace PointofSaleProj
             {
                 Console.WriteLine("Please select an item number to purchase:");
                 int index = Convert.ToInt32(Console.ReadLine()); //needs to validate for integers
-                Reciept.Add(Menu[index-1]);
+                Console.WriteLine("Please enter a quantity:");
+                int quantity = Convert.ToInt32(Console.ReadLine());
+                Reciept.Add(Menu[index-1], quantity);
                 Console.WriteLine("Continue shopping? y/n");
                 string input = Console.ReadLine();
                 if (input == "y")
@@ -62,28 +64,27 @@ namespace PointofSaleProj
                     Console.WriteLine("I didn't understand that, would you like to continue shopping? y/n");
                     continue;
                 }
-            }
-            
+            }            
         }
         public void PrintReciept()
         {
             Console.WriteLine("Receipt:");
-            Console.WriteLine("=================");
-            for (int i = 0; i < Reciept.Count; i++)
+            Console.WriteLine("=====================");
+            foreach (KeyValuePair<Product, int> kvp in Reciept)
             {
-                Product p = Reciept[i];
-                Console.WriteLine(p.Name + " - " +
-                    "$" + p.Price);
+                Product p = kvp.Key;
+                Console.WriteLine(p.Name + "\t\t"+
+                    "$" + p.Price*kvp.Value);
             }
-            Console.WriteLine("=================");
+            Console.WriteLine("=====================");
         }
         public double GetTotal()
         {
             double total = 0;
-            for (int i = 0; i < Reciept.Count; i++)
+            foreach (KeyValuePair<Product, int> kvp in Reciept)
             {
-                Product p = Reciept[i];
-                total += p.Price;
+                Product p = kvp.Key;
+                total += p.Price*kvp.Value;
             }
             return total;
         }

@@ -27,14 +27,14 @@ namespace PointofSaleProj
             double change = 0;
             if (amountPaid > amountOwed)
             {
-                change = (amountPaid - amountOwed);
-                Console.WriteLine("Change Due: $" + change);
+                change = Math.Round((amountPaid - amountOwed));
+                Console.WriteLine("Change Due: $" + Math.Round(change));
             }
             else if (amountPaid < amountOwed)
             {
                 Console.WriteLine("Not enough cash!");
                 amountOwed -= amountPaid;
-                Console.WriteLine(amountOwed + " is still owed.");
+                Console.WriteLine(Math.Round(amountOwed) + " is still owed.");
                 PayCash();
             }
             else
@@ -51,9 +51,9 @@ namespace PointofSaleProj
                 Console.WriteLine("Invalid Card Number entry.");
                 PayCreditCard();
             }
-            Console.WriteLine("Enter expiration month:");
+            Console.WriteLine("Enter expiration month (MM):");
             int month = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter expiration year:");
+            Console.WriteLine("Enter expiration year (YYYY):");
             int year = Convert.ToInt32(Console.ReadLine());
             expirationDate = new DateTime(year, month, 1);
             if(expirationDate < DateTime.Now)
@@ -72,7 +72,7 @@ namespace PointofSaleProj
         }
         public void PayCheck()
         {
-            Console.WriteLine("Please enter check number:");
+            Console.WriteLine("Please enter check number (9 digits):");
             string checkNum = Console.ReadLine();
             if (checkNum.Length != 9)
             {

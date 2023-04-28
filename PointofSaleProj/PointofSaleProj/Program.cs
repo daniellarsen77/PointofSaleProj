@@ -44,7 +44,6 @@ namespace PointofSaleProj
                     goOn = true; 
                 }
             }
-
         }
     }
 }

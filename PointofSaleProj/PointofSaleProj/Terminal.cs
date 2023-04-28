@@ -43,10 +43,9 @@ namespace PointofSaleProj
             bool goOn = true;
             while (goOn)
             {
-                Console.WriteLine("Please select an item number to purchase:");
-                int index = Convert.ToInt32(Console.ReadLine()); //needs to validate for integers
-                Console.WriteLine("Please enter a quantity:");
-                int quantity = Convert.ToInt32(Console.ReadLine());
+                int index = Validator.GetValidIntInput("Please select an item number to purchase:", 1, Menu.Count) - 1;
+
+                int quantity = Validator.GetValidIntInput("Please enter a quantity:", 1, int.MaxValue);
                 Reciept.Add(Menu[index-1], quantity);
                 Console.WriteLine("Continue shopping? y/n");
                 string input = Console.ReadLine();

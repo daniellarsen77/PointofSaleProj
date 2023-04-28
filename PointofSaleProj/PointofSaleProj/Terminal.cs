@@ -14,18 +14,18 @@ namespace PointofSaleProj
         public Dictionary<Product, int> Reciept { get; set; } = new Dictionary<Product, int>();
         public Terminal()
         {
-            Menu.Add(new Product("Coffee", "Drinks", "Just plain coffee", 1.99));
-            Menu.Add(new Product("Tea", "Drinks", "Earl Grey", 0.99));
-            Menu.Add(new Product("Espresso", "Drinks", "STRONG", 1.99));
-            Menu.Add(new Product("Latte", "Drinks", "Mostly Milk", 2.99));
-            Menu.Add(new Product("Bagel", "Food", "Not a doughnut", 3.00));
-            Menu.Add(new Product("Breakfast sandwich", "Food", "Egg, Bacon, cheese", 4.50));
-            Menu.Add(new Product("Breakfast burrito", "Food", "With Salsa", 4.50));
-            Menu.Add(new Product("Lemon Bar", "Food", "Dessert for Breakfast", 3.99));
-            Menu.Add(new Product("Croissant", "Food", "French", 2.50));
-            Menu.Add(new Product("Muffin", "Food", "Changes Daily", 2.99));
-            Menu.Add(new Product("Hat", "Merch", "Fitted", 5.00));
-            Menu.Add(new Product("Shirt", "Merch", "Only size XXXL available", 6));
+            Menu.Add(new Product("Coffee", "Drinks", "Just plain coffee", 1.99, 0));
+            Menu.Add(new Product("Tea", "Drinks", "Earl Grey", 0.99, 0));
+            Menu.Add(new Product("Espresso", "Drinks", "STRONG", 1.99, 0));
+            Menu.Add(new Product("Latte", "Drinks", "Mostly Milk", 2.99, 0));
+            Menu.Add(new Product("Bagel", "Food", "Not a doughnut", 3.00, 0));
+            Menu.Add(new Product("Breakfast sandwich", "Food", "Egg, Bacon, cheese", 4.50, 0));
+            Menu.Add(new Product("Breakfast burrito", "Food", "With Salsa", 4.50, 0));
+            Menu.Add(new Product("Lemon Bar", "Food", "Dessert for Breakfast", 3.99, 0));
+            Menu.Add(new Product("Croissant", "Food", "French", 2.50, 0));
+            Menu.Add(new Product("Muffin", "Food", "Changes Daily", 2.99, 0));
+            Menu.Add(new Product("Hat", "Merch", "Fitted", 5.00, 0.06));
+            Menu.Add(new Product("Shirt", "Merch", "Only size XXXL available", 6, 0.06));
         }
         public void PrintMenu()
         {
@@ -42,7 +42,7 @@ namespace PointofSaleProj
             bool goOn = true;
             while (goOn)
             {
-                int index = Validator.GetValidIntInput("Please select an item number to purchase:", 1, Menu.Count - 1);
+                int index = Validator.GetValidIntInput("Please select an item number to purchase:", 1, Menu.Count);
 
                 int quantity = Validator.GetValidIntInput("Please enter a quantity:", 1, int.MaxValue);
                 if (Reciept.ContainsKey(Menu[index - 1]))
@@ -78,18 +78,31 @@ namespace PointofSaleProj
             foreach (KeyValuePair<Product, int> kvp in Reciept)
             {
                 Product p = kvp.Key;
-                Console.WriteLine(p.Name + "\t" + kvp.Value + "@" + p.Price + " each\t\t" +
-                    "$" + p.Price*kvp.Value);
+
+                Console.WriteLine(p.Name + "\t\t" + String.Format("{0:C}", p.Price * kvp.Value));
+
+
             }
             Console.WriteLine("=====================");
         }
+
+        private double taxRate = 0.06;
+
         public double GetTotal()
         {
             double total = 0;
             foreach (KeyValuePair<Product, int> kvp in Reciept)
             {
                 Product p = kvp.Key;
-                total += p.Price*kvp.Value;
+                int quantity = kvp.Value;
+                if (p.Name == "Hat" || p.Name == "Shirt")
+                {
+                    total += (p.Price + (p.Price * taxRate)) * quantity;
+                }
+                else
+                {
+                    total += p.Price * quantity;
+                }
             }
             return total;
         }

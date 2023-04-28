@@ -14,7 +14,7 @@ namespace PointofSaleProj
 
         public double Price { get; set; }
 
-        public Product(string Name, string Category, string Description, double Price)
+        public Product(string Name, string Category, string Description, double Price, double SalesTax)
         {
             this.Name = Name;  
             this.Category = Category;

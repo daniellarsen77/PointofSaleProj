@@ -29,13 +29,13 @@ namespace PointofSaleProj
         }
         public void PrintMenu()
         {
-            for(int i  = 0; i < Menu.Count; i++)
+            for (int i = 0; i < Menu.Count; i++)
             {
                 Product p = Menu[i];
-                Console.WriteLine(i+1 + " - " + p.Name + " - " + p.Description + " - " + 
-                    "$" + p.Price);
+                Console.WriteLine("{0} - {1} - {2} - {3:C}", i + 1, p.Name, p.Description, p.Price);
             }
         }
+
         public void BuildRecipt()
         {
 
@@ -61,7 +61,7 @@ namespace PointofSaleProj
                 }
                 else if (input == "n")
                 {                   
-                    PrintReciept();
+                    PrintReceipt();
                     goOn = false;
                 }
                 else
@@ -71,19 +71,23 @@ namespace PointofSaleProj
                 }
             }            
         }
-        public void PrintReciept()
+        public void PrintReceipt()
         {
             Console.WriteLine("Receipt:");
             Console.WriteLine("=====================");
+            double subtotal = 0;
             foreach (KeyValuePair<Product, int> kvp in Reciept)
             {
                 Product p = kvp.Key;
-
+                int quantity = kvp.Value;
+                double itemTotal = p.Price * quantity;
                 Console.WriteLine(p.Name + "\t\t" + String.Format("{0:C}", p.Price * kvp.Value));
-
-
+                subtotal += itemTotal;
             }
+            double salesTax = subtotal * taxRate;
             Console.WriteLine("=====================");
+            Console.WriteLine("Subtotal:\t" + String.Format("{0:C}", subtotal));
+            Console.WriteLine("Sales Tax:\t" + String.Format("{0:C}", salesTax));
         }
 
         private double taxRate = 0.06;

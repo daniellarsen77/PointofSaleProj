@@ -13,7 +13,8 @@ namespace PointofSaleProj
             terminal.PrintMenu();
             terminal.BuildRecipt();
             double total = terminal.GetTotal();
-            Console.WriteLine("Total: $" + total);
+            Console.WriteLine("Total:"+ "\t\t"+ "$" + total);
+            Console.WriteLine();
             bool goOn = true;
             while (goOn)
             {

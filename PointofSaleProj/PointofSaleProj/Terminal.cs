@@ -72,7 +72,7 @@ namespace PointofSaleProj
             foreach (KeyValuePair<Product, int> kvp in Reciept)
             {
                 Product p = kvp.Key;
-                Console.WriteLine(p.Name + "\t\t"+
+                Console.WriteLine(p.Name + "\t" + kvp.Value + "@" + p.Price + " each\t\t" +
                     "$" + p.Price*kvp.Value);
             }
             Console.WriteLine("=====================");

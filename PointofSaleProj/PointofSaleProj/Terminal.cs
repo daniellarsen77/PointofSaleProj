@@ -78,7 +78,9 @@ namespace PointofSaleProj
             foreach (KeyValuePair<Product, int> kvp in Reciept)
             {
                 Product p = kvp.Key;
+
                 Console.WriteLine(p.Name + "\t\t" + String.Format("{0:C}", p.Price * kvp.Value));
+
 
             }
             Console.WriteLine("=====================");

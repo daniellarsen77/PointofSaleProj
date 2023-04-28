@@ -26,7 +26,6 @@ namespace PointofSaleProj
             Menu.Add(new Product("Muffin", "Food", "Changes Daily", 2.99));
             Menu.Add(new Product("Hat", "Merch", "Fitted", 5.00));
             Menu.Add(new Product("Shirt", "Merch", "Only size XXXL available", 6));
-
         }
         public void PrintMenu()
         {
@@ -43,10 +42,17 @@ namespace PointofSaleProj
             bool goOn = true;
             while (goOn)
             {
-                int index = Validator.GetValidIntInput("Please select an item number to purchase:", 1, Menu.Count) - 1;
+                int index = Validator.GetValidIntInput("Please select an item number to purchase:", 1, Menu.Count - 1);
 
                 int quantity = Validator.GetValidIntInput("Please enter a quantity:", 1, int.MaxValue);
-                Reciept.Add(Menu[index-1], quantity);
+                if (Reciept.ContainsKey(Menu[index - 1]))
+                {
+                    Reciept[Menu[index - 1]] += quantity;
+                }
+                else
+                {
+                    Reciept.Add(Menu[index - 1], quantity);
+                }
                 Console.WriteLine("Continue shopping? y/n");
                 string input = Console.ReadLine();
                 if (input == "y")

@@ -27,14 +27,14 @@ namespace PointofSaleProj
             double change = 0;
             if (amountPaid > amountOwed)
             {
-                change = Math.Round((amountPaid - amountOwed));
-                Console.WriteLine("Change Due: $" + Math.Round(change));
+                change = Math.Round(amountPaid - amountOwed, 2);
+                Console.WriteLine("Change Due: $" + change);
             }
             else if (amountPaid < amountOwed)
             {
                 Console.WriteLine("Not enough cash!");
                 amountOwed -= amountPaid;
-                Console.WriteLine(Math.Round(amountOwed) + " is still owed.");
+                Console.WriteLine(Math.Round(amountOwed,2) + " is still owed.");
                 PayCash();
             }
             else

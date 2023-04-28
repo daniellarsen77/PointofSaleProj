@@ -43,7 +43,7 @@ namespace PointofSaleProj
             bool goOn = true;
             while (goOn)
             {
-                int index = Validator.GetValidIntInput("Please select an item number to purchase:", 1, Menu.Count) - 1;
+                int index = Validator.GetValidIntInput("Please select an item number to purchase:", 1, Menu.Count - 1);
 
                 int quantity = Validator.GetValidIntInput("Please enter a quantity:", 1, int.MaxValue);
                 Reciept.Add(Menu[index-1], quantity);

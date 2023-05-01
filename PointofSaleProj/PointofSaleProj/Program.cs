@@ -7,7 +7,7 @@ namespace PointofSaleProj
         static void Main(string[] args)
         {
 
-            Console.WriteLine("Welcome to Virtual BREWdio!");
+            Console.WriteLine("Welcome to Visual BREWdio!");
             Console.WriteLine();
             Terminal terminal = new Terminal();
             terminal.PrintMenu();

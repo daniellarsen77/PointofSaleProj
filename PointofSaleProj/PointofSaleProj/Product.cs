@@ -12,6 +12,7 @@ namespace PointofSaleProj
         public string Category { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
+        public double SalesTax { get; set; }
 
         public Product(string Name, string Category, string Description, double Price, double SalesTax)
         {
@@ -19,6 +20,7 @@ namespace PointofSaleProj
             this.Category = Category;
             this.Description = Description;
             this.Price = Price;
+            this.SalesTax = SalesTax;
         } 
     }
 }

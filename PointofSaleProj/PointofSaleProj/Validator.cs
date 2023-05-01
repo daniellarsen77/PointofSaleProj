@@ -50,7 +50,7 @@ namespace PointofSaleProj
                 return input.Trim();
             }
         }
-        public static DateTime CheckDate()
+        public static DateTime GetDate()
         {
             
             int month = Validator.GetValidIntInput("Enter expiration month (MM):", 1, 12);
@@ -62,7 +62,7 @@ namespace PointofSaleProj
             {
                 Console.WriteLine("Payment method failed. This card is expired.");
                 Console.WriteLine("Please try again.");
-                return CheckDate();
+                return GetDate();
             }
             else
             {

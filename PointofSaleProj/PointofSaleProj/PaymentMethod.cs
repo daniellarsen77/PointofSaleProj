@@ -22,13 +22,14 @@ namespace PointofSaleProj
         }
         public void PayCash() 
         {
-            Console.WriteLine("Please insert cash (enter value):");
-            amountPaid = Convert.ToDouble(Console.ReadLine());
+
+            amountPaid = Validator.GetValidIntInput("Please insert cash. (enter value):", 0, 1000000);
             double change = 0;
             if (amountPaid > amountOwed)
             {
                 change = Math.Round(amountPaid - amountOwed, 2);
                 Console.WriteLine("Change Due: $" + change);
+                Console.WriteLine("Thank you for shopping at Visual BREWdio!");
             }
             else if (amountPaid < amountOwed)
             {
@@ -39,51 +40,28 @@ namespace PointofSaleProj
             }
             else
             {
-                Console.WriteLine("Thank you for shopping at Virtual BREWdio!");
+                Console.WriteLine();
+                Console.WriteLine("Thank you for shopping at Visual BREWdio!");
             }
         }
         public void PayCreditCard()
         {
-            Console.WriteLine("Please enter your 16-digit credit card number:");
-            string cardNum = Console.ReadLine(); 
-            if (cardNum.Length != 16)
-            {
-                Console.WriteLine("Invalid Card Number entry.");
-                PayCreditCard();
-            }
-            Console.WriteLine("Enter expiration month (MM):");
-            int month = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter expiration year (YYYY):");
-            int year = Convert.ToInt32(Console.ReadLine());
-            expirationDate = new DateTime(year, month, 1);
-            if(expirationDate < DateTime.Now)
-            {
-                Console.WriteLine("Payment method failed. This card is expired.");
-                PayCreditCard();
-            }
-            Console.WriteLine("Enter 3-digit CVV");
-            string CVV = Console.ReadLine();
-            if(CVV.Length != 3)
-            {
-                Console.WriteLine("Invalid CVV.");
-                PayCreditCard();
-            }
-            Console.WriteLine("Thank you for shopping at Virtual BREWdio!");
+            
+            string cardNum = Validator.GetCardInfo("Please enter your 16-digit credit card number:", 16);
+                       
+            DateTime expirationDate = Validator.GetDate();
+            
+            string CVV = Validator.GetCardInfo("Enter 3-digit CVV", 3);
+            Console.WriteLine();
+            Console.WriteLine("Thank you for shopping at Visual BREWdio!");
         }
         public void PayCheck()
         {
-            Console.WriteLine("Please enter check number (9 digits):");
-            string checkNum = Console.ReadLine();
-            if (checkNum.Length != 9)
-            {
-                Console.WriteLine("Invalid check...or something, I don't fully understand how checks work");
-                Console.WriteLine("Try again!");
-                PayCheck();
-            }
-            else
-            {
-                Console.WriteLine("Thank you for shopping at Virtual BREWdio!");
-            }
+
+            string checkNUm = Validator.GetCardInfo("Please enter check number (9 digits):", 9);
+            Console.WriteLine();
+            Console.WriteLine("Thank you for shopping at Visual BREWdio!");
+
         }
 
     }

@@ -35,6 +35,41 @@ namespace PointofSaleProj
                 }
             }
         }
+        public static string GetCardInfo(string message, int digits)
+        {
+            Console.WriteLine(message);
+            string input = Console.ReadLine();
+
+            if (input.Length != digits)
+            {
+                Console.WriteLine($"Must be {digits} long, please try again");
+                return GetCardInfo(message, digits);
+            }
+            else 
+            {
+                return input.Trim();
+            }
+        }
+        public static DateTime GetDate()
+        {
+            
+            int month = Validator.GetValidIntInput("Enter expiration month (MM):", 1, 12);
+
+            int year = Validator.GetValidIntInput("Enter expiration year (YYYY):", 1, 9999);
+
+            DateTime expirationDate = new DateTime(year, month, 1);
+            if (expirationDate < DateTime.Now)
+            {
+                Console.WriteLine("Payment method failed. This card is expired.");
+                Console.WriteLine("Please try again.");
+                return GetDate();
+            }
+            else
+            {
+                return expirationDate;
+            }
+        }
+        
         
     }
 

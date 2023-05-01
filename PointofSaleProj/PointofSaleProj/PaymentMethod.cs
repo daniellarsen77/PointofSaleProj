@@ -29,6 +29,7 @@ namespace PointofSaleProj
             {
                 change = Math.Round(amountPaid - amountOwed, 2);
                 Console.WriteLine("Change Due: $" + change);
+                Console.WriteLine("Thank you for shopping at Visual BREWdio!");
             }
             else if (amountPaid < amountOwed)
             {
@@ -40,27 +41,26 @@ namespace PointofSaleProj
             else
             {
                 Console.WriteLine();
-                Console.WriteLine("Thank you for shopping at Virtual BREWdio!");
+                Console.WriteLine("Thank you for shopping at Visual BREWdio!");
             }
         }
         public void PayCreditCard()
         {
             
             string cardNum = Validator.GetCardInfo("Please enter your 16-digit credit card number:", 16);
-            
-            
-            DateTime expirationDate = Validator.CheckDate();
+                       
+            DateTime expirationDate = Validator.GetDate();
             
             string CVV = Validator.GetCardInfo("Enter 3-digit CVV", 3);
             Console.WriteLine();
-            Console.WriteLine("Thank you for shopping at Virtual BREWdio!");
+            Console.WriteLine("Thank you for shopping at Visual BREWdio!");
         }
         public void PayCheck()
         {
 
             string checkNUm = Validator.GetCardInfo("Please enter check number (9 digits):", 9);
             Console.WriteLine();
-            Console.WriteLine("Thank you for shopping at Virtual BREWdio!");
+            Console.WriteLine("Thank you for shopping at Visual BREWdio!");
 
         }
 

@@ -76,6 +76,7 @@ namespace PointofSaleProj
             Console.WriteLine("Receipt:");
             Console.WriteLine("=====================");
             double subtotal = 0;
+            double salesTax = 0;
             foreach (KeyValuePair<Product, int> kvp in Reciept)
             {
                 Product p = kvp.Key;
@@ -83,30 +84,27 @@ namespace PointofSaleProj
                 double itemTotal = p.Price * quantity;
                 Console.WriteLine(p.Name + "\t\t" + String.Format("{0:C}", p.Price * kvp.Value));
                 subtotal += itemTotal;
+                salesTax += p.Price * p.SalesTax * quantity;
             }
-            double salesTax = subtotal * taxRate;
+            
             Console.WriteLine("=====================");
             Console.WriteLine("Subtotal:\t" + String.Format("{0:C}", subtotal));
             Console.WriteLine("Sales Tax:\t" + String.Format("{0:C}", salesTax));
+            
         }
 
-        private double taxRate = 0.06;
+        
 
         public double GetTotal()
         {
             double total = 0;
+            double salesTax = 0;
             foreach (KeyValuePair<Product, int> kvp in Reciept)
             {
                 Product p = kvp.Key;
                 int quantity = kvp.Value;
-                if (p.Name == "Hat" || p.Name == "Shirt")
-                {
-                    total += (p.Price + (p.Price * taxRate)) * quantity;
-                }
-                else
-                {
-                    total += p.Price * quantity;
-                }
+                salesTax += p.Price * p.SalesTax * quantity;
+                total += (p.Price * quantity) + salesTax;
             }
             return total;
         }

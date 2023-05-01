@@ -73,8 +73,9 @@ namespace PointofSaleProj
         }
         public void PrintReceipt()
         {
+            Console.WriteLine();
             Console.WriteLine("Receipt:");
-            Console.WriteLine("=====================");
+            Console.WriteLine("=====================================");
             double subtotal = 0;
             double salesTax = 0;
             foreach (KeyValuePair<Product, int> kvp in Reciept)
@@ -82,14 +83,14 @@ namespace PointofSaleProj
                 Product p = kvp.Key;
                 int quantity = kvp.Value;
                 double itemTotal = p.Price * quantity;
-                Console.WriteLine(p.Name + "\t\t" + String.Format("{0:C}", p.Price * kvp.Value));
+                Console.WriteLine(p.Name + "\t\t@" + p.Price + " each \t" + String.Format("{0:C}", p.Price * kvp.Value));
                 subtotal += itemTotal;
                 salesTax += p.Price * p.SalesTax * quantity;
             }
             
-            Console.WriteLine("=====================");
-            Console.WriteLine("Subtotal:\t" + String.Format("{0:C}", subtotal));
-            Console.WriteLine("Sales Tax:\t" + String.Format("{0:C}", salesTax));
+            Console.WriteLine("=====================================");
+            Console.WriteLine("Subtotal:\t\t\t" + String.Format("{0:C}", subtotal));
+            Console.WriteLine("Sales Tax:\t\t\t" + String.Format("{0:C}", salesTax));
             
         }
 
